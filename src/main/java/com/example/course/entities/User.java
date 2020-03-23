@@ -7,12 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity //diz que é uma entidade do banco de dados
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id // diz que é uma chave
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // diz que a chave é autoincrementada
 	private Long id;
 	private String name;
 	private String email;
