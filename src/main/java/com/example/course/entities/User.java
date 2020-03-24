@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity // diz que é uma entidade do banco de dados
 @Table(name = "tb_User")
 public class User implements Serializable {
@@ -23,6 +25,10 @@ public class User implements Serializable {
 	private String email;
 	private String phone;
 	private String password;
+
+	@JsonIgnore // se isso for não for colocado, quando cliente é chamado, os pedidos
+	// aparecerão. é necessário estar em pelo menos um dos lados da relação para
+	// evitar loopings infinitos
 
 	@OneToMany(mappedBy = "client") // A lista virou uma chave extrangeira
 	// mappedBy = "client" : significa que client é como a instancia dessa classe é

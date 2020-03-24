@@ -11,6 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+
 @Entity
 @Table(name = "tb_Order")
 public class Order implements Serializable {
@@ -19,9 +23,23 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Instant moment;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'" /* define o formato */, timezone = "GMT" /*
+																																 * Time
+																																 * zone
+																																 * de
+																																 * grenwitch
+																																 */)
+	// garantir que o instant seja mostrado no json no formato de String iso 8601
+	// anotacao para formatar o json
+
+	private Instant moment;
+	// @JsonIgnore se isso for não for colocado, quando order é chamado, os clientes
+	// aparecerão. é necessário estar em pelo menos um dos lados da relação para
+	// evitar loopings infinitos
 	@ManyToOne // diz que o Cliente é uma chave estrangeira
+	// o JPA vai mostrar o cliente quando for chamado o pedido, pois é uma relacão
+	// muitos para um
 	@JoinColumn(name = "client_id") // muda o nome da chave estrangeira
 	private User client;
 
