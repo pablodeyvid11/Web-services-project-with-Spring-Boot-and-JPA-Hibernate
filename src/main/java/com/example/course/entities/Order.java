@@ -49,7 +49,7 @@ public class Order implements Serializable {
 	private User client;
 	
 	
-	@OneToMany(mappedBy = "id.order") 
+	@OneToMany(mappedBy = "id.order")  // mapeia os todos os pedidos associados com os OrderItem
 	private Set<OrderItem> items = new HashSet<>();
 
 	
