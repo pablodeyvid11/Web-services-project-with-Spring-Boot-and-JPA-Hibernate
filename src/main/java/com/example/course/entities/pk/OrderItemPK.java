@@ -12,12 +12,16 @@ import com.example.course.entities.Product;
 @Embeddable // diz que ela é uma classe auxiliar de chave primária composta
 public class OrderItemPK implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
+
+	public OrderItemPK() {
+	}
 
 	public Order getOrder() {
 		return order;
