@@ -22,11 +22,15 @@ public class UserService {
 
 	public User findById(Long id) {
 //		if (userRepository.existsById(id)) {
-			Optional<User> obj = userRepository.findById(id);
-			return obj.get();
+		Optional<User> obj = userRepository.findById(id);
+		return obj.get();
 //		} else {
 //			return null;
 //		}
 
+	}
+
+	public User insert(User obj) {
+		return userRepository.save(obj);
 	}
 }
